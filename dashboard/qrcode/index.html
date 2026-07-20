@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QR Code · SolidW</title>
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="/index.html" class="landing-logo" style="margin-bottom: var(--space-6);">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW</span>
+    </a>
+
+    <nav>
+      <a href="/dashboard/index.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="/dashboard/business/index.html" class="sidebar-link">🏪 Business</a>
+      <a href="/dashboard/gallery/index.html" class="sidebar-link">🖼️ Gallery</a>
+      <a href="/dashboard/services/index.html" class="sidebar-link">📋 Services</a>
+      <a href="/dashboard/hours/index.html" class="sidebar-link">🕒 Opening Hours</a>
+      <a href="/dashboard/reservations/index.html" class="sidebar-link">📅 Reservations</a>
+      <a href="/dashboard/qrcode/index.html" class="sidebar-link active">🔗 QR Code</a>
+      <a href="/dashboard/settings/index.html" class="sidebar-link">⚙️ Settings</a>
+    </nav>
+
+    <button id="signOutBtn" class="sidebar-link" style="width:100%; text-align:left; margin-top: var(--space-5);">
+      🚪 Sign Out
+    </button>
+  </aside>
+
+  <main class="main-content page-transition">
+    <div class="dashboard-topbar">
+      <div>
+        <h1>QR Code</h1>
+        <p class="text-muted">Print it anywhere — it links straight to your booking page.</p>
+      </div>
+    </div>
+
+    <div class="form-group" style="max-width: 360px;">
+      <label class="form-label" for="businessSelect">Business</label>
+      <select id="businessSelect"></select>
+    </div>
+
+    <div id="noBusinessState" class="empty-state card" style="display:none;">
+      <h3>No business yet</h3>
+      <p>Create a business first to get its QR code.</p>
+      <a href="/dashboard/business/index.html" class="btn btn-primary" style="margin-top: var(--space-4);">Go to Business</a>
+    </div>
+
+    <div id="qrContent" class="card qr-container" style="display:none;">
+      <canvas id="qrCanvas"></canvas>
+
+      <div class="qr-link-box">
+        <span id="qrLinkText"></span>
+      </div>
+
+      <div style="display:flex; gap: var(--space-3); flex-wrap:wrap; justify-content:center;">
+        <button type="button" class="btn btn-outline" id="copyLinkBtn">Copy Link</button>
+        <a id="openLinkBtn" href="#" target="_blank" rel="noopener" class="btn btn-outline">Open Page</a>
+        <button type="button" class="btn btn-primary" id="downloadQrBtn">Download QR</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="./qrcode.js"></script>
+</body>
+</html>

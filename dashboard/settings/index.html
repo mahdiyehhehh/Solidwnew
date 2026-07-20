@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Settings · SolidW</title>
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="/index.html" class="landing-logo" style="margin-bottom: var(--space-6);">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW</span>
+    </a>
+
+    <nav>
+      <a href="/dashboard/index.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="/dashboard/business/index.html" class="sidebar-link">🏪 Business</a>
+      <a href="/dashboard/gallery/index.html" class="sidebar-link">🖼️ Gallery</a>
+      <a href="/dashboard/services/index.html" class="sidebar-link">📋 Services</a>
+      <a href="/dashboard/hours/index.html" class="sidebar-link">🕒 Opening Hours</a>
+      <a href="/dashboard/reservations/index.html" class="sidebar-link">📅 Reservations</a>
+      <a href="/dashboard/qrcode/index.html" class="sidebar-link">🔗 QR Code</a>
+      <a href="/dashboard/settings/index.html" class="sidebar-link active">⚙️ Settings</a>
+    </nav>
+
+    <button id="signOutBtn" class="sidebar-link" style="width:100%; text-align:left; margin-top: var(--space-5);">
+      🚪 Sign Out
+    </button>
+  </aside>
+
+  <main class="main-content page-transition">
+    <div class="dashboard-topbar">
+      <div>
+        <h1>Settings</h1>
+        <p class="text-muted">Your account, plan, and password.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: var(--space-5);">
+      <div class="card-header"><h3>Account</h3></div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="text" id="accountEmail" disabled />
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom: var(--space-5);">
+      <div class="card-header">
+        <h3>Plan</h3>
+        <span class="badge badge-free" id="planBadge">Free</span>
+      </div>
+      <p class="text-muted" id="planDetails">Loading plan…</p>
+
+      <div id="upgradeSection" style="margin-top: var(--space-5);">
+        <h4 style="margin-bottom: var(--space-2);">Upgrade to Pro</h4>
+        <p class="text-muted" id="upgradeInstructions">
+          Send your USDT payment, then submit the transaction reference below. An admin will review and approve it.
+        </p>
+        <form id="upgradeForm" class="auth-form" style="margin-top: var(--space-4);" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="proofNote">Transaction Reference / Note</label>
+            <input type="text" id="proofNote" placeholder="e.g. TX hash or wallet reference" required />
+          </div>
+          <button type="submit" class="btn btn-accent" id="submitUpgradeBtn">
+            <span id="submitUpgradeLabel">Submit Upgrade Request</span>
+          </button>
+        </form>
+      </div>
+
+      <div id="subscriptionHistory" style="margin-top: var(--space-5);"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Change Password</h3></div>
+      <div id="passwordError" class="auth-error-banner" style="display:none;" role="alert"></div>
+      <div id="passwordSuccess" class="auth-success-banner" style="display:none;" role="status"></div>
+      <form id="passwordForm" class="auth-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="newPassword">New Password</label>
+          <input type="password" id="newPassword" autocomplete="new-password" minlength="8" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="confirmNewPassword">Confirm New Password</label>
+          <input type="password" id="confirmNewPassword" autocomplete="new-password" minlength="8" required />
+        </div>
+        <button type="submit" class="btn btn-primary" id="updatePasswordBtn">
+          <span id="updatePasswordLabel">Update Password</span>
+        </button>
+      </form>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="./settings.js"></script>
+</body>
+</html>

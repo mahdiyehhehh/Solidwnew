@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services · SolidW</title>
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="/index.html" class="landing-logo" style="margin-bottom: var(--space-6);">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW</span>
+    </a>
+
+    <nav>
+      <a href="/dashboard/index.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="/dashboard/business/index.html" class="sidebar-link">🏪 Business</a>
+      <a href="/dashboard/gallery/index.html" class="sidebar-link">🖼️ Gallery</a>
+      <a href="/dashboard/services/index.html" class="sidebar-link active">📋 Services</a>
+      <a href="/dashboard/hours/index.html" class="sidebar-link">🕒 Opening Hours</a>
+      <a href="/dashboard/reservations/index.html" class="sidebar-link">📅 Reservations</a>
+      <a href="/dashboard/qrcode/index.html" class="sidebar-link">🔗 QR Code</a>
+      <a href="/dashboard/settings/index.html" class="sidebar-link">⚙️ Settings</a>
+    </nav>
+
+    <button id="signOutBtn" class="sidebar-link" style="width:100%; text-align:left; margin-top: var(--space-5);">
+      🚪 Sign Out
+    </button>
+  </aside>
+
+  <main class="main-content page-transition">
+    <div class="dashboard-topbar">
+      <div>
+        <h1>Services</h1>
+        <p class="text-muted">Offerings and prices shown on your booking page.</p>
+      </div>
+    </div>
+
+    <div class="form-group" style="max-width: 360px;">
+      <label class="form-label" for="businessSelect">Business</label>
+      <select id="businessSelect"></select>
+    </div>
+
+    <div id="noBusinessState" class="empty-state card" style="display:none;">
+      <h3>No business yet</h3>
+      <p>Create a business first, then come back to add services.</p>
+      <a href="/dashboard/business/index.html" class="btn btn-primary" style="margin-top: var(--space-4);">Go to Business</a>
+    </div>
+
+    <div id="servicesContent" style="display:none;">
+      <div class="card-header" style="margin-bottom: var(--space-4);">
+        <h3>Your Services</h3>
+        <button type="button" class="btn btn-primary" id="addServiceBtn">+ Add Service</button>
+      </div>
+
+      <div id="servicesList"></div>
+
+      <div id="emptyServices" class="empty-state card" style="display:none;">
+        <h3>No services yet</h3>
+        <p>Add your first service to start showing prices to customers.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Create / Edit Service Modal -->
+<div id="serviceModalOverlay" class="modal-overlay" style="display:none;">
+  <div class="modal">
+    <div class="card-header">
+      <h3 id="serviceModalTitle">Add Service</h3>
+      <button type="button" class="btn btn-ghost btn-sm" id="closeServiceModalBtn">✕</button>
+    </div>
+
+    <div id="serviceModalError" class="auth-error-banner" style="display:none;" role="alert"></div>
+
+    <form id="serviceForm" novalidate>
+      <input type="hidden" id="serviceId" />
+
+      <div class="form-group">
+        <label class="form-label" for="serviceName">Service Name</label>
+        <input type="text" id="serviceName" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="servicePrice">Price</label>
+        <input type="number" id="servicePrice" min="0" step="0.01" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="serviceDescription">Description</label>
+        <textarea id="serviceDescription" rows="3"></textarea>
+      </div>
+
+      <div style="display:flex; gap: var(--space-3); margin-top: var(--space-5);">
+        <button type="submit" class="btn btn-primary btn-block" id="saveServiceBtn">
+          <span id="saveServiceLabel">Save</span>
+        </button>
+        <button type="button" class="btn btn-outline" id="cancelServiceModalBtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="module" src="./services.js"></script>
+</body>
+</html>

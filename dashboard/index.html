@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard · SolidW</title>
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/dashboard.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="/index.html" class="landing-logo" style="margin-bottom: var(--space-6);">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW</span>
+    </a>
+
+    <nav>
+      <a href="/dashboard/index.html" class="sidebar-link active">📊 Dashboard</a>
+      <a href="/dashboard/business/index.html" class="sidebar-link">🏪 Business</a>
+      <a href="/dashboard/gallery/index.html" class="sidebar-link">🖼️ Gallery</a>
+      <a href="/dashboard/services/index.html" class="sidebar-link">📋 Services</a>
+      <a href="/dashboard/hours/index.html" class="sidebar-link">🕒 Opening Hours</a>
+      <a href="/dashboard/reservations/index.html" class="sidebar-link">📅 Reservations</a>
+      <a href="/dashboard/qrcode/index.html" class="sidebar-link">🔗 QR Code</a>
+      <a href="/dashboard/settings/index.html" class="sidebar-link">⚙️ Settings</a>
+    </nav>
+
+    <button id="signOutBtn" class="sidebar-link" style="width:100%; text-align:left; margin-top: var(--space-5);">
+      🚪 Sign Out
+    </button>
+  </aside>
+
+  <main class="main-content page-transition">
+    <div class="dashboard-topbar">
+      <div>
+        <h1 id="welcomeHeading">Welcome back</h1>
+        <p class="text-muted" id="welcomeSubtitle">Here's how your business is doing.</p>
+      </div>
+      <div class="plan-status-bar">
+        <span class="badge badge-free" id="planNameBadge">Free</span>
+        <span id="planStatusText">Loading plan…</span>
+      </div>
+    </div>
+
+    <div id="suspendedBanner" class="auth-error-banner" style="display:none; margin-bottom: var(--space-5);" role="alert">
+      Your account is suspended. Contact support for help restoring access.
+    </div>
+
+    <div class="stat-grid">
+      <div class="card stat-card">
+        <span class="stat-value" id="businessCount">–</span>
+        <span class="stat-label" id="businessLimitLabel">Businesses</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" id="upcomingCount">–</span>
+        <span class="stat-label">Upcoming reservations</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" id="galleryLimitValue">–</span>
+        <span class="stat-label">Gallery photo limit</span>
+      </div>
+    </div>
+
+    <div class="upgrade-banner" id="upgradeBanner">
+      <div>
+        <h3>Upgrade to Pro</h3>
+        <p id="upgradeText">Unlimited businesses, unlimited gallery photos, and higher booking limits.</p>
+      </div>
+      <a href="/dashboard/settings/index.html" class="btn btn-accent" id="upgradeBtn">Upgrade to Pro</a>
+    </div>
+
+    <div class="card" style="margin-top: var(--space-6);">
+      <div class="card-header">
+        <h3>Quick Links</h3>
+      </div>
+      <div class="feature-grid">
+        <a href="/dashboard/business/index.html" class="card card--hover feature-card">
+          <h4>Edit your business profile</h4>
+          <p class="text-muted">Name, description, logo, and contact info.</p>
+        </a>
+        <a href="/dashboard/services/index.html" class="card card--hover feature-card">
+          <h4>Manage services &amp; pricing</h4>
+          <p class="text-muted">Keep your offerings and prices up to date.</p>
+        </a>
+        <a href="/dashboard/qrcode/index.html" class="card card--hover feature-card">
+          <h4>Get your QR code</h4>
+          <p class="text-muted">Print it anywhere and link straight to your page.</p>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="./dashboard.js"></script>
+</body>
+</html>

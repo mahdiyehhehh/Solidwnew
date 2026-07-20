@@ -1,0 +1,87 @@
+/* ==========================================================================
+   SolidW — Auth Pages (login, register, reset-password)
+   ========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  background: radial-gradient(ellipse at top, var(--color-bg-alt) 0%, var(--color-bg) 60%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--space-7) var(--space-6);
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-md);
+}
+.auth-logo img { height: 32px; width: 32px; }
+
+.auth-card h1 {
+  text-align: center;
+  font-size: var(--fs-xl);
+  margin-bottom: var(--space-2);
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-6);
+}
+
+.auth-form { display: flex; flex-direction: column; }
+
+.auth-footer-link {
+  text-align: center;
+  margin-top: var(--space-5);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+}
+.auth-divider::before, .auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.auth-error-banner {
+  background-color: rgba(179, 53, 45, 0.08);
+  border: 1px solid rgba(179, 53, 45, 0.25);
+  color: var(--color-danger);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-4);
+}
+
+.auth-success-banner {
+  background-color: rgba(47, 122, 79, 0.08);
+  border: 1px solid rgba(47, 122, 79, 0.25);
+  color: var(--color-success);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-4);
+}

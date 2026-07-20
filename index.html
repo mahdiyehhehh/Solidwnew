@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SolidW · Booking pages for local businesses</title>
+<meta name="description" content="Create a beautiful booking page for your business in minutes. Services, hours, gallery, and reservations — all in one link." />
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/landing.css" />
+</head>
+<body>
+
+<header class="landing-header">
+  <div class="container">
+    <a href="/index.html" class="landing-logo">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW</span>
+    </a>
+    <nav class="landing-nav">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="/auth/login/index.html">Log In</a>
+      <a href="/auth/register/index.html" class="btn btn-primary btn-sm">Get Started</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="landing-hero">
+    <div class="container">
+      <h1 class="animate-fade-in-up">Your business, one link away from booked.</h1>
+      <p class="subtitle animate-fade-in-up">
+        SolidW gives your business a beautiful booking page — services, prices, hours,
+        gallery, and reservations — shareable anywhere in seconds.
+      </p>
+      <div class="landing-hero-actions animate-fade-in-up">
+        <a href="/auth/register/index.html" class="btn btn-primary btn-lg">Create your page — it's free</a>
+        <a href="#features" class="btn btn-outline btn-lg">See how it works</a>
+      </div>
+      <div class="landing-hero-mockup animate-fade-in-up">
+        <img src="/assets/img/placeholders/hero-mockup.png" alt="Preview of a SolidW booking page" />
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section" id="features">
+    <div class="container">
+      <div class="landing-section-heading">
+        <h2>Everything your booking page needs</h2>
+        <p>Set it up once. Share one link. Let customers book without a single phone call.</p>
+      </div>
+
+      <div class="feature-grid stagger-children">
+        <div class="card feature-card">
+          <div class="feature-icon">📋</div>
+          <h3>Services &amp; Pricing</h3>
+          <p class="text-muted">List every service you offer with clear pricing, so customers know exactly what to expect.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">🖼️</div>
+          <h3>Photo Gallery</h3>
+          <p class="text-muted">Show off your space and your work with a gallery customers can browse before they book.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">🕒</div>
+          <h3>Opening Hours</h3>
+          <p class="text-muted">Keep your hours up to date so customers always know when you're open.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">📅</div>
+          <h3>Reservations</h3>
+          <p class="text-muted">Customers book directly on your page. Every request lands straight in your dashboard.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>WhatsApp &amp; Telegram</h3>
+          <p class="text-muted">One-tap links so customers can message you directly on the apps they already use.</p>
+        </div>
+        <div class="card feature-card">
+          <div class="feature-icon">🔗</div>
+          <h3>QR Code</h3>
+          <p class="text-muted">Get a printable QR code for your storefront, menu, or receipts that links straight to your page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section" id="pricing">
+    <div class="container">
+      <div class="landing-section-heading">
+        <h2>Simple pricing</h2>
+        <p>Start free. Upgrade when you're ready for more.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="card pricing-card">
+          <span class="badge badge-free">Free</span>
+          <div class="pricing-price">$0<span> / forever</span></div>
+          <ul class="pricing-features">
+            <li>✓ 1 booking page</li>
+            <li>✓ Services &amp; pricing</li>
+            <li>✓ Opening hours</li>
+            <li>✓ Reservation form</li>
+            <li>✓ QR code</li>
+          </ul>
+          <a href="/auth/register/index.html" class="btn btn-outline btn-block">Get Started</a>
+        </div>
+
+        <div class="card pricing-card pricing-card--featured">
+          <span class="badge badge-pro">Pro</span>
+          <div class="pricing-price">Custom<span> / contact us</span></div>
+          <ul class="pricing-features">
+            <li>✓ Unlimited booking pages</li>
+            <li>✓ Unlimited gallery photos</li>
+            <li>✓ Higher daily booking limits</li>
+            <li>✓ Priority support</li>
+            <li>✓ Everything in Free</li>
+          </ul>
+          <a href="/auth/register/index.html" class="btn btn-primary btn-block">Upgrade to Pro</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="landing-section">
+    <div class="container">
+      <div class="landing-cta">
+        <h2>Ready to get booked?</h2>
+        <p>Create your free booking page in under five minutes.</p>
+        <a href="/auth/register/index.html" class="btn btn-accent btn-lg">Create your page</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="landing-footer">
+  <div class="container">
+    &copy; <span id="year"></span> SolidW. All rights reserved.
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

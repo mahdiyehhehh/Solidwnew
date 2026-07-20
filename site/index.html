@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="pageTitle">Booking Page · SolidW</title>
+<meta name="description" id="pageDescription" content="Book with us in seconds." />
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/public-site.css" />
+</head>
+<body>
+
+<div id="loadingState" style="padding: var(--space-8); text-align:center;">
+  <p class="text-muted">Loading…</p>
+</div>
+
+<div id="notFoundState" class="container" style="display:none; padding-top: var(--space-8); text-align:center;">
+  <h1>Page not found</h1>
+  <p class="text-muted">This business page doesn't exist or isn't published yet.</p>
+  <a href="/index.html" class="btn btn-primary" style="margin-top: var(--space-5);">Go to SolidW</a>
+</div>
+
+<div id="pageContent" style="display:none;">
+
+  <div class="public-hero" id="publicHero"></div>
+
+  <div class="public-header-card">
+    <div class="card animate-fade-in-up">
+      <img id="businessLogo" class="public-business-logo" alt="" style="display:none;" />
+      <div class="public-business-info">
+        <h1 id="businessName"></h1>
+        <p class="address" id="businessAddress"></p>
+        <div class="public-status-badge" style="margin-top: var(--space-2);">
+          <span class="public-status-dot" id="statusDot"></span>
+          <span id="statusText"></span>
+        </div>
+      </div>
+      <div class="public-contact-actions">
+        <a href="#" id="whatsappLink" class="btn btn-primary btn-sm" target="_blank" rel="noopener" style="display:none;">💬 WhatsApp</a>
+        <a href="#" id="telegramLink" class="btn btn-outline btn-sm" target="_blank" rel="noopener" style="display:none;">✈️ Telegram</a>
+        <a href="#" id="phoneLink" class="btn btn-outline btn-sm" style="display:none;">📞 Call</a>
+        <a href="#" id="websiteLink" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" style="display:none;">🌐 Website</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="public-tabs">
+    <a href="#about" class="public-tab active" data-tab="about">About</a>
+    <a href="#gallery" class="public-tab" data-tab="gallery">Gallery</a>
+    <a href="#services" class="public-tab" data-tab="services">Services</a>
+    <a href="#hours" class="public-tab" data-tab="hours">Hours</a>
+    <a href="#book" class="public-tab" data-tab="book">Book Now</a>
+  </nav>
+
+  <main class="container" style="padding-bottom: var(--space-8);">
+
+    <section id="about-panel" class="tab-panel">
+      <p id="businessDescription" class="text-muted"></p>
+    </section>
+
+    <section id="gallery-panel" class="tab-panel" style="display:none;">
+      <div class="public-gallery-grid" id="galleryGrid"></div>
+      <p id="galleryEmpty" class="text-muted" style="display:none;">No photos yet.</p>
+    </section>
+
+    <section id="services-panel" class="tab-panel" style="display:none;">
+      <div id="servicesGrid" style="display:flex; flex-direction:column; gap: var(--space-3);"></div>
+      <p id="servicesEmpty" class="text-muted" style="display:none;">No services listed yet.</p>
+    </section>
+
+    <section id="hours-panel" class="tab-panel" style="display:none;">
+      <div class="card">
+        <table class="table public-hours-table">
+          <tbody id="hoursTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="book-panel" class="tab-panel" style="display:none;">
+      <div class="card booking-form-card">
+        <h3 style="margin-bottom: var(--space-4);">Book Now</h3>
+
+        <div id="bookingClosedNotice" class="auth-error-banner" style="display:none;">
+          This business isn't accepting online bookings right now.
+        </div>
+        <div id="bookingSuccess" class="auth-success-banner" style="display:none;"></div>
+        <div id="bookingError" class="auth-error-banner" style="display:none;"></div>
+
+        <form id="bookingForm" class="auth-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="customerName">Your Name</label>
+            <input type="text" id="customerName" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="customerPhone">Phone Number</label>
+            <input type="tel" id="customerPhone" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="bookingDate">Date</label>
+              <input type="date" id="bookingDate" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="bookingTime">Time</label>
+              <input type="time" id="bookingTime" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bookingNotes">Notes</label>
+            <textarea id="bookingNotes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="bookingSubmitBtn">
+            <span id="bookingSubmitLabel">Book Now</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="public-footer">
+    Powered by <a href="/index.html">SolidW</a>
+  </footer>
+</div>
+
+<div id="lightboxOverlay" class="lightbox-overlay" style="display:none;">
+  <button type="button" class="lightbox-close" id="lightboxClose">✕</button>
+  <img id="lightboxImage" src="" alt="" />
+</div>
+
+<script type="module" src="./site.js"></script>
+</body>
+</html>

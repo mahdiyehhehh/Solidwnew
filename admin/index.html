@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin · SolidW</title>
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/dashboard.css" />
+<link rel="stylesheet" href="/assets/css/admin.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar admin-sidebar">
+    <a href="/admin/index.html" class="landing-logo" style="margin-bottom: var(--space-6);">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW Admin</span>
+    </a>
+
+    <nav>
+      <a href="/admin/index.html" class="sidebar-link active">📊 Dashboard</a>
+      <a href="/admin/users/index.html" class="sidebar-link">👤 Users</a>
+      <a href="/admin/businesses/index.html" class="sidebar-link">🏪 Businesses</a>
+      <a href="/admin/reservations/index.html" class="sidebar-link">📅 Reservations</a>
+    </nav>
+
+    <button id="signOutBtn" class="sidebar-link" style="width:100%; text-align:left; margin-top: var(--space-5);">
+      🚪 Sign Out
+    </button>
+  </aside>
+
+  <main class="main-content page-transition">
+    <div class="dashboard-topbar">
+      <div>
+        <h1>Admin Overview</h1>
+        <p class="text-muted">Platform-wide stats and pending actions.</p>
+      </div>
+    </div>
+
+    <div class="admin-stat-grid">
+      <div class="card stat-card">
+        <span class="stat-value" id="totalUsers">–</span>
+        <span class="stat-label">Total Users</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" id="totalBusinesses">–</span>
+        <span class="stat-label">Total Businesses</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" id="totalReservations">–</span>
+        <span class="stat-label">Total Reservations</span>
+      </div>
+      <div class="card stat-card">
+        <span class="stat-value" id="pendingCount">–</span>
+        <span class="stat-label">Pending Upgrade Requests</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>Pending Upgrade Requests</h3>
+        <a href="/admin/users/index.html" class="btn btn-outline btn-sm">View All Users</a>
+      </div>
+      <div id="pendingList"></div>
+      <div id="pendingEmpty" class="empty-state" style="display:none;">
+        <h3>Nothing pending</h3>
+        <p>All upgrade requests have been reviewed.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="./dashboard.js"></script>
+</body>
+</html>

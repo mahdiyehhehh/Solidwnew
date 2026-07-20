@@ -1,0 +1,94 @@
+/* ==========================================================================
+   SolidW — Animations
+   ==========================================================================
+   Keyframes and reusable motion classes. Kept separate from components.css
+   so heavier pages (public site, landing) can opt in without bloating the
+   dashboard/admin bundles.
+   ========================================================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.35); }
+  50% { box-shadow: 0 0 0 8px rgba(201, 162, 75, 0); }
+}
+
+/* ---------- Utility animation classes ---------- */
+.animate-fade-in { animation: fadeIn var(--duration-slow) var(--ease-standard) both; }
+.animate-fade-in-up { animation: fadeInUp var(--duration-slow) var(--ease-standard) both; }
+.animate-fade-in-down { animation: fadeInDown var(--duration-slow) var(--ease-standard) both; }
+.animate-scale-in { animation: scaleIn var(--duration-base) var(--ease-standard) both; }
+.animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+
+/* Stagger helper — pair with children in a list (e.g. gallery grid, service cards) */
+.stagger-children > * { animation: fadeInUp var(--duration-slow) var(--ease-standard) both; }
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 240ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(n+7) { animation-delay: 360ms; }
+
+/* Page transition wrapper — wrap main content in a page's <body> */
+.page-transition {
+  animation: fadeIn var(--duration-base) var(--ease-standard) both;
+}
+
+/* Skeleton loading shimmer (used while awaiting Supabase queries) */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-alt) 25%,
+    var(--color-border) 50%,
+    var(--color-bg-alt) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Spinner (button loading states, page loaders) */
+.spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Hover lift — generic utility for cards/buttons that want a subtle raise */
+.hover-lift {
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+}

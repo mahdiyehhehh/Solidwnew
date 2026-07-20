@@ -1,0 +1,122 @@
+/* ==========================================================================
+   SolidW — Admin Dashboard
+   ========================================================================== */
+
+.admin-sidebar {
+  background-color: var(--color-text);
+}
+.admin-sidebar .sidebar-link {
+  color: rgba(245, 239, 232, 0.7);
+}
+.admin-sidebar .sidebar-link:hover {
+  background-color: rgba(245, 239, 232, 0.08);
+  color: #fff;
+}
+.admin-sidebar .sidebar-link.active {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+}
+.admin-sidebar .landing-logo { color: #fff; }
+
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.admin-search-input {
+  max-width: 320px;
+}
+
+.admin-filter-tabs {
+  display: flex;
+  gap: var(--space-2);
+}
+.admin-filter-tab {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+.admin-filter-tab.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
+}
+
+.user-row-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+}
+
+.admin-action-menu {
+  position: relative;
+}
+
+.admin-action-dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  min-width: 160px;
+  z-index: var(--z-dropdown);
+  overflow: hidden;
+}
+.admin-action-dropdown button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-sm);
+}
+.admin-action-dropdown button:hover { background-color: var(--color-bg-alt); }
+.admin-action-dropdown button.danger { color: var(--color-danger); }
+
+.subscription-request-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+.pagination button {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+.pagination button.active {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}

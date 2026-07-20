@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/business/:slug", "destination": "/site/index.html" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
