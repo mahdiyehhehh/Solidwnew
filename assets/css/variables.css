@@ -8,29 +8,32 @@
    ========================================================================== */
 
 :root {
-  /* ---- Brand palette (matches QR code styling in qr.js) ---- */
-  --color-primary: #7a1f2b;        /* deep burgundy */
-  --color-primary-dark: #5c1620;
-  --color-primary-light: #a8394a;
-  --color-accent: #c9a24b;         /* gold */
-  --color-accent-dark: #a8842f;
-  --color-accent-light: #e0c37a;
+  /* ---- Brand palette (matches QR code styling in /* ---- Brand palette ---- */
+--color-primary: #305070;
+--color-primary-dark: #112250;
+--color-primary-light: #4B6487;
 
-  /* ---- Neutrals ---- */
-  --color-bg: #faf8f5;
-  --color-bg-alt: #f1ece4;
-  --color-surface: #ffffff;
-  --color-surface-glass: rgba(255, 255, 255, 0.6);
-  --color-border: #e4ddd2;
-  --color-text: #241b17;
-  --color-text-muted: #6b5f57;
-  --color-text-inverse: #ffffff;
+--color-accent: #E0C58F;
+--color-accent-dark: #C9AA6C;
+--color-accent-light: #F0D9AA;
 
-  /* ---- Feedback colors ---- */
-  --color-success: #2f7a4f;
-  --color-warning: #c98a1f;
-  --color-danger: #b3352d;
-  --color-info: #2f6c7a;
+/* ---- Neutrals ---- */
+--color-bg: #F5F0E9;
+--color-bg-alt: #F0ECE6;
+--color-surface: #FFFFFF;
+--color-surface-glass: rgba(255,255,255,0.72);
+
+--color-border: #D9CBC2;
+
+--color-text: #1F2A44;
+--color-text-muted: #667085;
+--color-text-inverse: #FFFFFF;
+
+/* ---- Feedback ---- */
+--color-success: #2E7D5A;
+--color-warning: #D2A63F;
+--color-danger: #C04B4B;
+--color-info: #3A6F9C;
 
   /* ---- Typography ---- */
   --font-heading: "Fraunces", "Georgia", serif;
@@ -99,9 +102,9 @@
 
 /* Dark surface variant used for admin sidebar / footer bands */
 [data-theme="inverse"] {
-  --color-bg: #241b17;
-  --color-surface: #2f241f;
-  --color-border: #40332c;
-  --color-text: #f5efe8;
-  --color-text-muted: #c2b4a8;
+  --color-bg: #112250;
+  --color-surface: #1B305C;
+  --color-border: #305070;
+  --color-text: #F5F0E9;
+  --color-text-muted: #D9CBC2;
 }
