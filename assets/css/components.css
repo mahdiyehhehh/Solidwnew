@@ -2,9 +2,9 @@
    SolidW — Shared Components
    ==========================================================================
    Buttons, cards, glass panels, form groups, badges, tables, empty states,
-   and the toast component. Page-specific stylesheets (landing.css,
-   dashboard.css, etc.) should compose these classes rather than redefine
-   button/card styling locally.
+   FAQ accordion, and the toast component. Page-specific stylesheets
+   (landing.css, dashboard.css, etc.) should compose these classes rather
+   than redefine button/card styling locally.
    ========================================================================== */
 
 /* ---------- Buttons ---------- */
@@ -21,29 +21,43 @@
   white-space: nowrap;
   transition: transform var(--duration-fast) var(--ease-standard),
               box-shadow var(--duration-fast) var(--ease-standard),
-              background-color var(--duration-fast) var(--ease-standard);
+              background-color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
 }
 
 .btn:active { transform: scale(0.97); }
 
 .btn-primary {
-  background-color: var(--color-primary);
+  background: var(--gradient-primary);
   color: var(--color-text-inverse);
+  box-shadow: var(--shadow-sm);
 }
-.btn-primary:hover { background-color: var(--color-primary-dark); color: var(--color-text-inverse); }
+.btn-primary:hover {
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-md), var(--shadow-glow-primary);
+  transform: translateY(-1px);
+}
 
 .btn-accent {
-  background-color: var(--color-accent);
-  color: var(--color-text);
+  background: var(--gradient-gold);
+  color: var(--color-primary-dark);
+  box-shadow: var(--shadow-sm);
 }
-.btn-accent:hover { background-color: var(--color-accent-dark); }
+.btn-accent:hover {
+  box-shadow: var(--shadow-md), var(--shadow-glow-accent);
+  transform: translateY(-1px);
+}
 
 .btn-outline {
   background-color: transparent;
-  border: 1.5px solid var(--color-primary);
-  color: var(--color-primary);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text);
 }
-.btn-outline:hover { background-color: var(--color-primary); color: var(--color-text-inverse); }
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-surface);
+}
 
 .btn-ghost {
   background-color: transparent;
@@ -58,7 +72,7 @@
 .btn-danger:hover { filter: brightness(0.92); }
 
 .btn-sm { padding: var(--space-2) var(--space-4); font-size: var(--fs-xs); }
-.btn-lg { padding: var(--space-4) var(--space-6); font-size: var(--fs-md); }
+.btn-lg { padding: var(--space-4) var(--space-7); font-size: var(--fs-md); }
 .btn-block { width: 100%; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 
@@ -67,17 +81,19 @@
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-5);
+  padding: var(--space-6);
   box-shadow: var(--shadow-sm);
 }
 
 .card--hover {
   transition: box-shadow var(--duration-base) var(--ease-standard),
-              transform var(--duration-base) var(--ease-standard);
+              transform var(--duration-base) var(--ease-standard),
+              border-color var(--duration-base) var(--ease-standard);
 }
 .card--hover:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
 }
 
 .card-header {
@@ -90,9 +106,9 @@
 /* ---------- Glass panel (landing / public site hero overlays) ---------- */
 .glass-panel {
   background-color: var(--color-surface-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
 }
@@ -135,13 +151,15 @@
   border-radius: var(--radius-full);
   font-size: var(--fs-xs);
   font-weight: var(--fw-semibold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .badge-free { background-color: var(--color-bg-alt); color: var(--color-text-muted); }
-.badge-pro { background-color: var(--color-accent-light); color: var(--color-primary-dark); }
-.badge-success { background-color: rgba(47, 122, 79, 0.12); color: var(--color-success); }
-.badge-warning { background-color: rgba(201, 138, 31, 0.12); color: var(--color-warning); }
-.badge-danger { background-color: rgba(179, 53, 45, 0.12); color: var(--color-danger); }
+.badge-pro { background: var(--gradient-gold); color: var(--color-primary-dark); }
+.badge-success { background-color: rgba(47, 122, 90, 0.12); color: var(--color-success); }
+.badge-warning { background-color: rgba(179, 134, 47, 0.12); color: var(--color-warning); }
+.badge-danger { background-color: rgba(168, 63, 63, 0.12); color: var(--color-danger); }
 
 /* ---------- Tables (admin lists, reservations) ---------- */
 .table {
@@ -170,6 +188,47 @@
 }
 .empty-state h3 { color: var(--color-text-muted); margin-bottom: var(--space-2); }
 
+/* ---------- FAQ accordion ---------- */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faq-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-6);
+  transition: border-color var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+.faq-item[open] {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+.faq-item summary {
+  cursor: pointer;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-md);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-size: var(--fs-lg);
+  color: var(--color-primary);
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { margin-top: var(--space-3); }
+
 /* ---------- Nav / sidebar shell (dashboard + admin) ---------- */
 .app-shell {
   display: flex;
@@ -195,7 +254,7 @@
   font-weight: var(--fw-medium);
 }
 .sidebar-link:hover { background-color: var(--color-bg-alt); color: var(--color-text); }
-.sidebar-link.active { background-color: var(--color-primary); color: var(--color-text-inverse); }
+.sidebar-link.active { background: var(--gradient-primary); color: var(--color-text-inverse); }
 
 .main-content {
   flex: 1;
@@ -237,7 +296,8 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(36, 27, 23, 0.5);
+  background-color: rgba(17, 34, 80, 0.55);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
