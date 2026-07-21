@@ -161,6 +161,21 @@
 .badge-warning { background-color: rgba(179, 134, 47, 0.12); color: var(--color-warning); }
 .badge-danger { background-color: rgba(168, 63, 63, 0.12); color: var(--color-danger); }
 
+/* ---------- Alert banners (dashboard suspended notice, modal form errors) ---------- */
+.auth-error-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background-color: rgba(168, 63, 63, 0.1);
+  border: 1px solid rgba(168, 63, 63, 0.3);
+  color: var(--color-danger);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--space-4);
+}
+
 /* ---------- Tables (admin lists, reservations) ---------- */
 .table {
   width: 100%;
