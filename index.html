@@ -23,6 +23,7 @@
     <nav class="landing-nav">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="/auth/login/index.html">Log In</a>
       <a href="/auth/register/index.html" class="btn btn-primary btn-sm">Get Started</a>
     </nav>
@@ -32,10 +33,12 @@
 <main>
 
   <section class="landing-hero">
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="container">
+      <span class="eyebrow animate-fade-in-up">Booking pages for independent businesses</span>
       <h1 class="animate-fade-in-up">Your business, one link away from booked.</h1>
       <p class="subtitle animate-fade-in-up">
-        SolidW gives your business a beautiful booking page — services, prices, hours,
+        SolidW gives your business a refined booking page — services, pricing, hours,
         gallery, and reservations — shareable anywhere in seconds.
       </p>
       <div class="landing-hero-actions animate-fade-in-up">
@@ -51,38 +54,51 @@
   <section class="landing-section" id="features">
     <div class="container">
       <div class="landing-section-heading">
+        <span class="eyebrow">Features</span>
         <h2>Everything your booking page needs</h2>
         <p>Set it up once. Share one link. Let customers book without a single phone call.</p>
       </div>
 
       <div class="feature-grid stagger-children">
-        <div class="card feature-card">
-          <div class="feature-icon">📋</div>
+        <div class="card card--hover feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>
+          </div>
           <h3>Services &amp; Pricing</h3>
           <p class="text-muted">List every service you offer with clear pricing, so customers know exactly what to expect.</p>
         </div>
-        <div class="card feature-card">
-          <div class="feature-icon">🖼️</div>
+        <div class="card card--hover feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5.5-5.5L4 21"/></svg>
+          </div>
           <h3>Photo Gallery</h3>
           <p class="text-muted">Show off your space and your work with a gallery customers can browse before they book.</p>
         </div>
-        <div class="card feature-card">
-          <div class="feature-icon">🕒</div>
+        <div class="card card--hover feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          </div>
           <h3>Opening Hours</h3>
           <p class="text-muted">Keep your hours up to date so customers always know when you're open.</p>
         </div>
-        <div class="card feature-card">
-          <div class="feature-icon">📅</div>
+        <div class="card card--hover feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+          </div>
           <h3>Reservations</h3>
           <p class="text-muted">Customers book directly on your page. Every request lands straight in your dashboard.</p>
         </div>
-        <div class="card feature-card">
-          <div class="feature-icon">💬</div>
+        <div class="card card--hover feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-12.2 7.6L3 20l1-5.6A8.5 8.5 0 1121 11.5z"/></svg>
+          </div>
           <h3>WhatsApp &amp; Telegram</h3>
           <p class="text-muted">One-tap links so customers can message you directly on the apps they already use.</p>
         </div>
-        <div class="card feature-card">
-          <div class="feature-icon">🔗</div>
+        <div class="card card--hover feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM19 14h2v2h-2zM14 19h2v2h-2zM19 19h2v2h-2z"/></svg>
+          </div>
           <h3>QR Code</h3>
           <p class="text-muted">Get a printable QR code for your storefront, menu, or receipts that links straight to your page.</p>
         </div>
@@ -90,10 +106,11 @@
     </div>
   </section>
 
-  <section class="landing-section" id="pricing">
+  <section class="landing-section landing-section--alt" id="pricing">
     <div class="container">
       <div class="landing-section-heading">
-        <h2>Simple pricing</h2>
+        <span class="eyebrow">Pricing</span>
+        <h2>Simple, honest pricing</h2>
         <p>Start free. Upgrade when you're ready for more.</p>
       </div>
 
@@ -102,11 +119,11 @@
           <span class="badge badge-free">Free</span>
           <div class="pricing-price">$0<span> / forever</span></div>
           <ul class="pricing-features">
-            <li>✓ 1 booking page</li>
-            <li>✓ Services &amp; pricing</li>
-            <li>✓ Opening hours</li>
-            <li>✓ Reservation form</li>
-            <li>✓ QR code</li>
+            <li>1 booking page</li>
+            <li>Services &amp; pricing</li>
+            <li>Opening hours</li>
+            <li>Reservation form</li>
+            <li>QR code</li>
           </ul>
           <a href="/auth/register/index.html" class="btn btn-outline btn-block">Get Started</a>
         </div>
@@ -115,11 +132,11 @@
           <span class="badge badge-pro">Pro</span>
           <div class="pricing-price">Custom<span> / contact us</span></div>
           <ul class="pricing-features">
-            <li>✓ Unlimited booking pages</li>
-            <li>✓ Unlimited gallery photos</li>
-            <li>✓ Higher daily booking limits</li>
-            <li>✓ Priority support</li>
-            <li>✓ Everything in Free</li>
+            <li>Unlimited booking pages</li>
+            <li>Unlimited gallery photos</li>
+            <li>Higher daily booking limits</li>
+            <li>Priority support</li>
+            <li>Everything in Free</li>
           </ul>
           <a href="/auth/register/index.html" class="btn btn-primary btn-block">Upgrade to Pro</a>
         </div>
@@ -127,9 +144,43 @@
     </div>
   </section>
 
+  <section class="landing-section" id="faq">
+    <div class="container container--narrow">
+      <div class="landing-section-heading">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions, answered</h2>
+        <p>Everything you need to know before you get started.</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>How quickly can I set up my page?</summary>
+          <p class="text-muted">Most businesses are live in under five minutes. Add your services, hours, and a few photos, then share your link.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need a website already?</summary>
+          <p class="text-muted">No. Your SolidW page works as a standalone link you can share on social media, receipts, or a QR code.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can customers book without creating an account?</summary>
+          <p class="text-muted">Yes. Customers submit a reservation directly from your page, and it lands in your dashboard instantly.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What happens if I outgrow the Free plan?</summary>
+          <p class="text-muted">Upgrade to Pro at any time for unlimited pages, unlimited gallery photos, and higher booking limits.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is there a contract or commitment?</summary>
+          <p class="text-muted">No contracts. The Free plan is free forever, and Pro pricing is arranged directly with our team.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section class="landing-section">
     <div class="container">
       <div class="landing-cta">
+        <span class="eyebrow eyebrow--inverse">Get started</span>
         <h2>Ready to get booked?</h2>
         <p>Create your free booking page in under five minutes.</p>
         <a href="/auth/register/index.html" class="btn btn-accent btn-lg">Create your page</a>
@@ -140,8 +191,18 @@
 </main>
 
 <footer class="landing-footer">
-  <div class="container">
-    &copy; <span id="year"></span> SolidW. All rights reserved.
+  <div class="container landing-footer-inner">
+    <a href="/index.html" class="landing-logo">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW</span>
+    </a>
+    <nav class="landing-footer-nav">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="/auth/login/index.html">Log In</a>
+    </nav>
+    <p class="landing-footer-copy">&copy; <span id="year"></span> SolidW. All rights reserved.</p>
   </div>
 </footer>
 
