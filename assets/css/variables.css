@@ -8,7 +8,7 @@
    ========================================================================== */
 
 :root {
-  /* ---- Brand palette (matches QR code styling in /* ---- Brand palette ---- */
+/* ---- Brand palette (matches QR code styling in qr.js) ---- */
 --color-primary: #305070;
 --color-primary-dark: #112250;
 --color-primary-light: #4B6487;
