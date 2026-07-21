@@ -8,32 +8,36 @@
    ========================================================================== */
 
 :root {
-/* ---- Brand palette (matches QR code styling in qr.js) ---- */
---color-primary: #305070;
---color-primary-dark: #112250;
---color-primary-light: #4B6487;
+  /* ---- Brand palette (matches QR code styling in qr.js) ---- */
+  --color-primary: #305070;        /* sapphire */
+  --color-primary-dark: #112250;   /* royal blue */
+  --color-primary-light: #4d7096;
+  --color-accent: #e0c58f;         /* gold */
+  --color-accent-dark: #c7a86a;
+  --color-accent-light: #efe1c4;
 
---color-accent: #E0C58F;
---color-accent-dark: #C9AA6C;
---color-accent-light: #F0D9AA;
+  /* ---- Neutrals ---- */
+  --color-bg: #f5f0e9;             /* cream */
+  --color-bg-alt: #ece3d4;
+  --color-surface: #ffffff;
+  --color-surface-glass: rgba(255, 255, 255, 0.66);
+  --color-border: #e2d9c8;
+  --color-text: #14213b;
+  --color-text-muted: #5c6b80;
+  --color-text-inverse: #ffffff;
 
-/* ---- Neutrals ---- */
---color-bg: #F5F0E9;
---color-bg-alt: #F0ECE6;
---color-surface: #FFFFFF;
---color-surface-glass: rgba(255,255,255,0.72);
+  /* ---- Feedback colors ---- */
+  --color-success: #2f7a5a;
+  --color-warning: #b3862f;
+  --color-danger: #a83f3f;
+  --color-info: #305070;
 
---color-border: #D9CBC2;
-
---color-text: #1F2A44;
---color-text-muted: #667085;
---color-text-inverse: #FFFFFF;
-
-/* ---- Feedback ---- */
---color-success: #2E7D5A;
---color-warning: #D2A63F;
---color-danger: #C04B4B;
---color-info: #3A6F9C;
+  /* ---- Gradients ---- */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  --gradient-gold: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  --gradient-mesh: radial-gradient(60% 60% at 15% 10%, rgba(48, 80, 112, 0.16) 0%, rgba(48, 80, 112, 0) 60%),
+                   radial-gradient(50% 50% at 85% 0%, rgba(224, 197, 143, 0.28) 0%, rgba(224, 197, 143, 0) 60%),
+                   radial-gradient(60% 60% at 50% 100%, rgba(17, 34, 80, 0.10) 0%, rgba(17, 34, 80, 0) 60%);
 
   /* ---- Typography ---- */
   --font-heading: "Fraunces", "Georgia", serif;
@@ -46,14 +50,14 @@
   --fs-lg: 1.375rem;
   --fs-xl: 1.75rem;
   --fs-2xl: 2.25rem;
-  --fs-3xl: 3rem;
+  --fs-3xl: 3.25rem;
 
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
   --fw-bold: 700;
 
-  --lh-tight: 1.2;
+  --lh-tight: 1.15;
   --lh-normal: 1.5;
   --lh-loose: 1.75;
 
@@ -69,16 +73,17 @@
   --space-9: 6rem;
 
   /* ---- Radius ---- */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
   --radius-full: 999px;
 
-  /* ---- Shadows ---- */
-  --shadow-sm: 0 1px 2px rgba(36, 27, 23, 0.06);
-  --shadow-md: 0 4px 16px rgba(36, 27, 23, 0.08);
-  --shadow-lg: 0 12px 32px rgba(36, 27, 23, 0.12);
-  --shadow-glow-accent: 0 0 0 3px rgba(201, 162, 75, 0.25);
+  /* ---- Shadows (sapphire-tinted, softer than pure black) ---- */
+  --shadow-sm: 0 1px 2px rgba(17, 34, 80, 0.06);
+  --shadow-md: 0 8px 24px rgba(17, 34, 80, 0.10);
+  --shadow-lg: 0 24px 60px rgba(17, 34, 80, 0.16);
+  --shadow-glow-accent: 0 0 0 3px rgba(224, 197, 143, 0.35);
+  --shadow-glow-primary: 0 0 0 3px rgba(48, 80, 112, 0.18);
 
   /* ---- Transitions ---- */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
@@ -89,7 +94,7 @@
   /* ---- Layout ---- */
   --container-max: 1120px;
   --container-narrow: 680px;
-  --header-height: 72px;
+  --header-height: 76px;
   --sidebar-width: 240px;
 
   /* ---- Z-index scale ---- */
@@ -103,8 +108,8 @@
 /* Dark surface variant used for admin sidebar / footer bands */
 [data-theme="inverse"] {
   --color-bg: #112250;
-  --color-surface: #1B305C;
-  --color-border: #305070;
-  --color-text: #F5F0E9;
-  --color-text-muted: #D9CBC2;
+  --color-surface: #16295c;
+  --color-border: #2b3f70;
+  --color-text: #f5f0e9;
+  --color-text-muted: #b9c3d6;
 }
