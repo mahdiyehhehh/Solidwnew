@@ -187,9 +187,18 @@ serviceForm.addEventListener("submit", async (e) => {
   if (editingId) {
     ({ error } = await supabase.from("services").update(payload).eq("id", editingId));
   } else {
+    // Base the new item's sort_order on the current max, not services.length —
+    // after deletions, remaining sort_order values no longer line up with the
+    // array length, so services.length can collide with an existing value and
+    // leave two rows tied at the same sort_order.
+    const nextSortOrder =
+      services.length > 0
+        ? Math.max(...services.map((s) => s.sort_order ?? 0)) + 1
+        : 0;
+
     ({ error } = await supabase.from("services").insert({
       business_id: selectedBusinessId,
-      sort_order: services.length,
+      sort_order: nextSortOrder,
       ...payload,
     }));
   }
@@ -209,6 +218,13 @@ serviceForm.addEventListener("submit", async (e) => {
 });
 
 async function deleteService(id) {
+  const svc = services.find((s) => s.id === id);
+  if (!svc) return;
+
+  if (!window.confirm(`Delete "${svc.name}"? This cannot be undone.`)) {
+    return;
+  }
+
   const { error } = await supabase.from("services").delete().eq("id", id);
   if (error) {
     showToast(error.message || "Could not delete service.", "error");
