@@ -1,8 +1,10 @@
 // ==========================================================================
 // SolidW — Dashboard Overview Logic
 // ==========================================================================
-// Loads the signed-in owner's profile + plan, counts their businesses and
-// upcoming reservations, and renders the upgrade CTA when relevant.
+// Loads the signed-in owner's profile + plan, checks whether they already
+// have a business — showing an onboarding card (not a redirect) if not —
+// counts their businesses and upcoming reservations, and renders the
+// upgrade CTA + business summary card when relevant.
 // ==========================================================================
 
 import { requireAuth, signOut } from "/assets/js/authGuard.js";
@@ -22,9 +24,45 @@ const upgradeBanner = document.getElementById("upgradeBanner");
 const upgradeText = document.getElementById("upgradeText");
 const signOutBtn = document.getElementById("signOutBtn");
 
+const onboardingCard = document.getElementById("onboardingCard");
+const businessInfoCard = document.getElementById("businessInfoCard");
+const bizLogo = document.getElementById("bizLogo");
+const bizName = document.getElementById("bizName");
+const bizCategory = document.getElementById("bizCategory");
+const bizDescription = document.getElementById("bizDescription");
+const bizContact = document.getElementById("bizContact");
+
 signOutBtn.addEventListener("click", async () => {
   await signOut();
 });
+
+function renderBusinessCard(biz) {
+  onboardingCard.style.display = "none";
+  businessInfoCard.style.display = "block";
+
+  bizName.textContent = biz.name;
+  bizCategory.textContent = biz.category || "Uncategorized";
+  bizDescription.textContent = biz.description || "No description yet.";
+
+  const contactParts = [];
+  if (biz.phone) contactParts.push(`Phone: ${biz.phone}`);
+  if (biz.whatsapp) contactParts.push(`WhatsApp: ${biz.whatsapp}`);
+  if (biz.telegram) contactParts.push(`Telegram: ${biz.telegram}`);
+  if (biz.address) contactParts.push(`Address: ${biz.address}`);
+  bizContact.textContent = contactParts.join(" · ");
+
+  if (biz.logo_url) {
+    bizLogo.src = biz.logo_url;
+    bizLogo.style.display = "block";
+  } else {
+    bizLogo.style.display = "none";
+  }
+}
+
+function renderOnboardingCard() {
+  businessInfoCard.style.display = "none";
+  onboardingCard.style.display = "block";
+}
 
 async function init() {
   const user = await requireAuth(); // redirects if not logged in / is admin
@@ -67,42 +105,45 @@ async function init() {
     }
   }
 
-  // ---- Business count ----
-  const { count: bizCount, error: bizError } = await supabase
+  // ---- Businesses (fetched once, used for onboarding check, count, and the summary card) ----
+  const { data: myBusinesses, error: bizError } = await supabase
     .from("businesses")
-    .select("id", { count: "exact", head: true })
+    .select("*")
     .eq("owner_id", user.id);
 
-  if (!bizError) {
-    businessCount.textContent = bizCount ?? 0;
-    businessLimitLabel.textContent =
-      plan && plan.max_businesses
-        ? `Businesses (limit ${plan.max_businesses})`
-        : "Businesses";
+  if (bizError) {
+    showToast("Could not load your business. Please try again.", "error");
+    return;
   }
+
+  businessLimitLabel.textContent =
+    plan && plan.max_businesses
+      ? `Businesses (limit ${plan.max_businesses})`
+      : "Businesses";
+
+  // No business yet → stay on the dashboard and show the onboarding card
+  // instead of redirecting away.
+  if (!myBusinesses || myBusinesses.length === 0) {
+    businessCount.textContent = 0;
+    upcomingCount.textContent = 0;
+    renderOnboardingCard();
+    return;
+  }
+
+  businessCount.textContent = myBusinesses.length;
+  renderBusinessCard(myBusinesses[0]);
 
   // ---- Upcoming reservations count ----
-  // Reservations are scoped by business_id, so first get this owner's business ids.
-  const { data: myBusinesses } = await supabase
-    .from("businesses")
-    .select("id")
-    .eq("owner_id", user.id);
+  const businessIds = myBusinesses.map((b) => b.id);
+  const today = new Date().toISOString().slice(0, 10);
+  const { count: resCount } = await supabase
+    .from("reservations")
+    .select("id", { count: "exact", head: true })
+    .in("business_id", businessIds)
+    .gte("date", today)
+    .in("status", ["pending", "confirmed"]);
 
-  const businessIds = (myBusinesses || []).map((b) => b.id);
-
-  if (businessIds.length > 0) {
-    const today = new Date().toISOString().slice(0, 10);
-    const { count: resCount } = await supabase
-      .from("reservations")
-      .select("id", { count: "exact", head: true })
-      .in("business_id", businessIds)
-      .gte("date", today)
-      .in("status", ["pending", "confirmed"]);
-
-    upcomingCount.textContent = resCount ?? 0;
-  } else {
-    upcomingCount.textContent = 0;
-  }
+  upcomingCount.textContent = resCount ?? 0;
 }
 
 init();
