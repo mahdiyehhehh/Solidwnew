@@ -5,11 +5,12 @@
 import { supabase } from "/assets/js/supabaseClient.js";
 import { redirectIfLoggedIn } from "/assets/js/authGuard.js";
 
-console.log("REGISTER JS LOADED");
-alert("REGISTER JS LOADED");
+alert("1 - JS loaded");
 
 // If already logged in, bounce straight to the right dashboard.
 redirectIfLoggedIn();
+
+alert("2 - After redirectIfLoggedIn");
 
 const form = document.getElementById("registerForm");
 const errorBanner = document.getElementById("errorBanner");
@@ -37,7 +38,12 @@ function setLoading(isLoading) {
 }
 
 form.addEventListener("submit", async (e) => {
+  alert("3 - Submit fired");
+
   e.preventDefault();
+
+  alert("4 - preventDefault done");
+
   errorBanner.style.display = "none";
   successBanner.style.display = "none";
 
@@ -62,6 +68,8 @@ form.addEventListener("submit", async (e) => {
 
   setLoading(true);
 
+  alert("5 - Before supabase.auth.signUp");
+
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -70,11 +78,16 @@ form.addEventListener("submit", async (e) => {
     },
   });
 
+  alert("6 - After signUp");
+
   setLoading(false);
 
   if (error) {
+    alert("7 - Error: " + error.message);
     showError(error.message || "Could not create account. Please try again.");
     return;
+  } else {
+    alert("8 - Success");
   }
 
   // If email confirmation is required, session will be null even on success.
