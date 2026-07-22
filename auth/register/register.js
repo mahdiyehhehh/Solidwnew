@@ -5,6 +5,9 @@
 import { supabase } from "/assets/js/supabaseClient.js";
 import { redirectIfLoggedIn } from "/assets/js/authGuard.js";
 
+console.log("REGISTER JS LOADED");
+alert("REGISTER JS LOADED");
+
 // If already logged in, bounce straight to the right dashboard.
 redirectIfLoggedIn();
 
