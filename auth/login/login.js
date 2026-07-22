@@ -1,63 +1,56 @@
-// ==========================================================================
-// SolidW — Login Page Logic
-// ==========================================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Log In · SolidW</title>
+<meta name="description" content="Log in to your SolidW dashboard." />
+<link rel="icon" href="/assets/img/logo.svg" />
+<link rel="stylesheet" href="/assets/css/variables.css" />
+<link rel="stylesheet" href="/assets/css/base.css" />
+<link rel="stylesheet" href="/assets/css/components.css" />
+<link rel="stylesheet" href="/assets/css/animations.css" />
+<link rel="stylesheet" href="/assets/css/auth.css" />
+</head>
+<body>
+<div class="auth-page">
+  <div class="card auth-card page-transition">
+    <a href="/index.html" class="auth-logo">
+      <img src="/assets/img/logo.svg" alt="" />
+      <span>SolidW</span>
+    </a>
 
-import { supabase } from "/assets/js/supabaseClient.js";
-import { redirectIfLoggedIn } from "/assets/js/authGuard.js";
-import { ADMIN_EMAIL } from "/assets/js/config.js";
+    <h1>Welcome back</h1>
+    <p class="auth-subtitle">Log in to manage your booking page.</p>
 
-alert("login.js loaded");
+    <div id="errorBanner" class="auth-error-banner" style="display:none;" role="alert"></div>
 
-redirectIfLoggedIn();
+    <form id="loginForm" class="auth-form" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required />
+      </div>
 
-const form = document.getElementById("loginForm");
-const errorBanner = document.getElementById("errorBanner");
-const submitBtn = document.getElementById("submitBtn");
-const submitLabel = document.getElementById("submitLabel");
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required />
+      </div>
 
-function showError(message) {
-  errorBanner.textContent = message;
-  errorBanner.style.display = "block";
-}
+      <div style="text-align:right; margin-bottom: var(--space-4);">
+        <a href="/auth/reset-password/index.html" style="font-size: var(--fs-sm);">Forgot password?</a>
+      </div>
 
-function setLoading(isLoading) {
-  submitBtn.disabled = isLoading;
-  submitLabel.innerHTML = isLoading
-    ? '<span class="spinner"></span> Logging in…'
-    : "Log In";
-}
+      <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn">
+        <span id="submitLabel">Log In</span>
+      </button>
+    </form>
 
-form.addEventListener("submit", async (e) => {
-  alert("form submit fired");
-  e.preventDefault();
-  errorBanner.style.display = "none";
+    <div class="auth-footer-link">
+      Don't have an account? <a href="/auth/register/index.html">Create one</a>
+    </div>
+  </div>
+</div>
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-
-  if (!email || !password) {
-    showError("Please enter your email and password.");
-    return;
-  }
-
-  setLoading(true);
-
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-  setLoading(false);
-
-  if (error) {
-    alert("login error: " + error.message);
-    showError(error.message || "Invalid email or password.");
-    return;
-  }
-
-  alert("login success");
-
-  const user = data?.user;
-  if (user?.email === ADMIN_EMAIL) {
-    window.location.replace("/admin/index.html");
-  } else {
-    window.location.replace("/dashboard/index.html");
-  }
-});
+<script type="module" src="/auth/login/login.js"></script>
+</body>
+</html>
