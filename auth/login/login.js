@@ -6,6 +6,8 @@ import { supabase } from "/assets/js/supabaseClient.js";
 import { redirectIfLoggedIn } from "/assets/js/authGuard.js";
 import { ADMIN_EMAIL } from "/assets/js/config.js";
 
+alert("login.js loaded");
+
 redirectIfLoggedIn();
 
 const form = document.getElementById("loginForm");
@@ -26,6 +28,7 @@ function setLoading(isLoading) {
 }
 
 form.addEventListener("submit", async (e) => {
+  alert("form submit fired");
   e.preventDefault();
   errorBanner.style.display = "none";
 
@@ -44,9 +47,12 @@ form.addEventListener("submit", async (e) => {
   setLoading(false);
 
   if (error) {
+    alert("login error: " + error.message);
     showError(error.message || "Invalid email or password.");
     return;
   }
+
+  alert("login success");
 
   const user = data?.user;
   if (user?.email === ADMIN_EMAIL) {
