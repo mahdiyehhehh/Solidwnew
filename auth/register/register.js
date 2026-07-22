@@ -5,16 +5,8 @@
 import { supabase } from "/assets/js/supabaseClient.js";
 import { redirectIfLoggedIn } from "/assets/js/authGuard.js";
 
-alert("1 - JS loaded");
-
 // If already logged in, bounce straight to the right dashboard.
-try {
-  redirectIfLoggedIn();
-} catch (err) {
-  alert(err.stack || err.message);
-}
-
-alert("2 - After redirectIfLoggedIn");
+redirectIfLoggedIn();
 
 const form = document.getElementById("registerForm");
 const errorBanner = document.getElementById("errorBanner");
@@ -42,11 +34,7 @@ function setLoading(isLoading) {
 }
 
 form.addEventListener("submit", async (e) => {
-  alert("3 - Submit fired");
-
   e.preventDefault();
-
-  alert("4 - preventDefault done");
 
   errorBanner.style.display = "none";
   successBanner.style.display = "none";
@@ -72,8 +60,6 @@ form.addEventListener("submit", async (e) => {
 
   setLoading(true);
 
-  alert("5 - Before supabase.auth.signUp");
-
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -82,26 +68,12 @@ form.addEventListener("submit", async (e) => {
     },
   });
 
-  alert("6 - After signUp");
-
   setLoading(false);
 
   if (error) {
-    alert(JSON.stringify(error, null, 2));
-    alert(
-      [
-        "message: " + error?.message,
-        "status: " + error?.status,
-        "name: " + error?.name,
-        "code: " + error?.code,
-        "cause: " + JSON.stringify(error?.cause)
-      ].join("\n")
-    );
     console.error(error);
     showError(error.message || "Could not create account.");
     return;
-  } else {
-    alert("8 - Success");
   }
 
   // If email confirmation is required, session will be null even on success.
