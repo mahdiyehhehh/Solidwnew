@@ -13,8 +13,8 @@
 
 // TODO: Replace with your actual Supabase project values.
 // Find these in: Supabase Dashboard → Project Settings → API
-export const SUPABASE_URL = "https://YOUR-PROJECT-REF.supabase.co";
-export const SUPABASE_ANON_KEY = "YOUR-ANON-PUBLIC-KEY";
+export const SUPABASE_URL = "https://lradarnfxzgqmhwxelcm.supabase.co";
+export const SUPABASE_ANON_KEY = "sb_publishable_tyBG6ZUYJpkljIPpaKhF2g_6-8YoIa-";
 
 // The ONLY account that will be treated as Administrator.
 // Must exactly match the email used to sign up/log in.
