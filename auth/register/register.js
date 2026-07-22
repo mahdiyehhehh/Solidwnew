@@ -8,7 +8,11 @@ import { redirectIfLoggedIn } from "/assets/js/authGuard.js";
 alert("1 - JS loaded");
 
 // If already logged in, bounce straight to the right dashboard.
-redirectIfLoggedIn();
+try {
+  redirectIfLoggedIn();
+} catch (err) {
+  alert(err.stack || err.message);
+}
 
 alert("2 - After redirectIfLoggedIn");
 
