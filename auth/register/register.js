@@ -87,8 +87,18 @@ form.addEventListener("submit", async (e) => {
   setLoading(false);
 
   if (error) {
-    alert("7 - Error: " + error.message);
-    showError(error.message || "Could not create account. Please try again.");
+    alert(JSON.stringify(error, null, 2));
+    alert(
+      [
+        "message: " + error?.message,
+        "status: " + error?.status,
+        "name: " + error?.name,
+        "code: " + error?.code,
+        "cause: " + JSON.stringify(error?.cause)
+      ].join("\n")
+    );
+    console.error(error);
+    showError(error.message || "Could not create account.");
     return;
   } else {
     alert("8 - Success");
