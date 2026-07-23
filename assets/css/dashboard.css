@@ -137,14 +137,16 @@
 .service-row-price { font-weight: var(--fw-semibold); color: var(--color-primary); }
 .service-row-actions { display: flex; gap: var(--space-2); }
 
-/* ---- Opening hours — compact rows ---- */
+/* ---- Opening hours — compact rows, green when open ---- */
+#hoursContent { padding: var(--space-4); }
+
 .hours-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-2);
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-1);
   border-bottom: 1px solid var(--color-border);
 }
 .hours-row:last-child { border-bottom: none; }
@@ -152,12 +154,12 @@
 .hours-row-top {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  min-width: 150px;
+  gap: var(--space-2);
+  min-width: 140px;
 }
 .hours-day-label {
   font-weight: var(--fw-medium);
-  width: 84px;
+  width: 78px;
   flex-shrink: 0;
   font-size: var(--fs-sm);
 }
@@ -172,16 +174,16 @@
 }
 .hours-closed-toggle input[type="checkbox"] { display: none; }
 .hours-toggle-track {
-  width: 34px; height: 20px;
+  width: 32px; height: 18px;
   border-radius: var(--radius-full);
-  background-color: var(--color-border);
+  background-color: var(--color-success);
   position: relative;
   flex-shrink: 0;
   transition: background-color var(--duration-fast) var(--ease-standard);
 }
 .hours-toggle-thumb {
   position: absolute; top: 2px; left: 2px;
-  width: 16px; height: 16px;
+  width: 14px; height: 14px;
   border-radius: 50%;
   background: #fff;
   box-shadow: var(--shadow-sm);
@@ -189,17 +191,13 @@
 }
 .hours-closed-toggle input:checked ~ .hours-toggle-track { background-color: var(--color-danger); }
 .hours-closed-toggle input:checked ~ .hours-toggle-track .hours-toggle-thumb { transform: translateX(14px); }
-.hours-toggle-text { min-width: 42px; }
+.hours-toggle-text { min-width: 40px; }
 
-.hours-times {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
+.hours-times { display: flex; align-items: center; gap: var(--space-1); }
 .hours-times input[type="time"] {
-  width: 88px;
-  padding: 0.3rem 0.5rem;
-  font-size: var(--fs-sm);
+  width: 80px;
+  padding: 0.25rem 0.4rem;
+  font-size: var(--fs-xs);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background-color: var(--color-surface);
@@ -333,7 +331,7 @@ input:-webkit-autofill:focus {
   caret-color: var(--color-text);
 }
 
-/* ---- Button appearance reset (defends against native browser artifacts) ---- */
+/* ---- Button appearance reset ---- */
 button {
   -webkit-appearance: none;
   appearance: none;
