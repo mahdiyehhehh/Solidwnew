@@ -7,6 +7,8 @@ import { supabase } from "/assets/js/supabaseClient.js";
 import { showToast } from "/assets/js/toast.js";
 import { BUCKETS } from "/assets/js/config.js";
 
+document.title = "JS LOADED - " + document.title;
+
 const businessList = document.getElementById("businessList");
 const emptyState = document.getElementById("emptyState");
 const addBusinessBtn = document.getElementById("addBusinessBtn");
