@@ -218,33 +218,6 @@
 .feature-card h4 { margin-bottom: var(--space-2); }
 .feature-card p { margin: 0; font-size: var(--fs-sm); }
 
-/* ---- Pro plan picker ---- */
-.plan-picker {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: var(--space-3);
-}
-.plan-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-4);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-surface);
-  cursor: pointer;
-  transition: border-color var(--duration-fast) var(--ease-standard),
-              box-shadow var(--duration-fast) var(--ease-standard);
-}
-.plan-option:hover { border-color: var(--color-accent); }
-.plan-option--selected {
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-sm), var(--shadow-glow-primary);
-}
-.plan-option-label { font-weight: var(--fw-semibold); }
-.plan-option-price { font-family: var(--font-heading); font-size: var(--fs-lg); font-weight: var(--fw-bold); }
-
 /* ---- Sidebar SVG icons ---- */
 .sidebar-icon {
   width: 18px;
@@ -263,6 +236,42 @@
 .btn-glass:hover {
   background-color: rgba(245, 240, 233, 0.16);
   border-color: rgba(224, 197, 143, 0.4);
+}
+
+/* ---- Pricing selector (Settings → Upgrade to Pro) ---- */
+.pricing-selector { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5); }
+.pricing-option {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4); border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md); background-color: var(--color-surface);
+  cursor: pointer; text-align: left; width: 100%;
+  transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+.pricing-option:hover { border-color: var(--color-accent); }
+.pricing-option--selected { border-color: var(--color-primary); box-shadow: var(--shadow-sm), var(--shadow-glow-primary); }
+.pricing-option-radio {
+  width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--color-border); flex-shrink: 0;
+}
+.pricing-option--selected .pricing-option-radio { border-color: var(--color-primary); background: radial-gradient(circle, var(--color-primary) 40%, transparent 44%); }
+.pricing-option-info { display: flex; justify-content: space-between; align-items: center; flex: 1; }
+.pricing-option-label { font-weight: var(--fw-medium); }
+.pricing-option-price { font-family: var(--font-heading); font-weight: var(--fw-bold); font-size: var(--fs-lg); }
+
+.pricing-summary { padding: var(--space-5); border-radius: var(--radius-md); }
+.pricing-summary h4 { color: var(--color-navy-text); margin-bottom: var(--space-3); }
+.pricing-features { list-style: none; padding: 0; margin: 0 0 var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+.pricing-features li { color: var(--color-navy-text-muted); font-size: var(--fs-sm); padding-left: var(--space-5); position: relative; }
+.pricing-features li::before { content: "✓"; position: absolute; left: 0; color: var(--color-accent); font-weight: var(--fw-bold); }
+.pricing-summary-price { font-family: var(--font-heading); font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--color-navy-text); margin-bottom: var(--space-4); }
+.pricing-summary-price span { font-size: var(--fs-sm); font-weight: var(--fw-regular); color: var(--color-navy-text-muted); }
+
+/* ---- Autofill fix (removes yellow browser autofill background) ---- */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--color-surface) inset !important;
+  -webkit-text-fill-color: var(--color-text) !important;
+  caret-color: var(--color-text);
 }
 
 @media (max-width: 640px) {
