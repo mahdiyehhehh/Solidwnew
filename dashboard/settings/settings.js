@@ -1,27 +1,25 @@
 // ==========================================================================
 // SolidW — Dashboard Settings Logic
 // ==========================================================================
-// Account email display, Pro upgrade request submission (subscriptions
-// table, method='usdt_manual', reviewed by an admin via approve/reject
-// RPCs), subscription history, and password change.
-// ==========================================================================
 
 import { requireAuth, signOut } from "/assets/js/authGuard.js";
 import { supabase } from "/assets/js/supabaseClient.js";
 import { showToast } from "/assets/js/toast.js";
-import { UPGRADE_TELEGRAM_USERNAME } from "/assets/js/config.js";
+import { UPGRADE_TELEGRAM_USERNAME, USDT_WALLET_ADDRESS, PRO_PLANS } from "/assets/js/config.js";
 
 const signOutBtn = document.getElementById("signOutBtn");
 const accountEmail = document.getElementById("accountEmail");
 const planBadge = document.getElementById("planBadge");
 const planDetails = document.getElementById("planDetails");
 const upgradeSection = document.getElementById("upgradeSection");
-const upgradeInstructions = document.getElementById("upgradeInstructions");
-const upgradeForm = document.getElementById("upgradeForm");
-const proofNoteInput = document.getElementById("proofNote");
-const submitUpgradeBtn = document.getElementById("submitUpgradeBtn");
-const submitUpgradeLabel = document.getElementById("submitUpgradeLabel");
 const subscriptionHistory = document.getElementById("subscriptionHistory");
+
+const planPicker = document.getElementById("planPicker");
+const paymentStep = document.getElementById("paymentStep");
+const payAmount = document.getElementById("payAmount");
+const walletAddress = document.getElementById("walletAddress");
+const copyWalletBtn = document.getElementById("copyWalletBtn");
+const confirmTelegramBtn = document.getElementById("confirmTelegramBtn");
 
 const passwordForm = document.getElementById("passwordForm");
 const passwordError = document.getElementById("passwordError");
@@ -32,6 +30,7 @@ const updatePasswordBtn = document.getElementById("updatePasswordBtn");
 const updatePasswordLabel = document.getElementById("updatePasswordLabel");
 
 let currentUser = null;
+let selectedPlan = null;
 
 signOutBtn.addEventListener("click", async () => {
   await signOut();
@@ -49,7 +48,7 @@ async function init() {
 
   const { data: plan } = await supabase
     .from("plans")
-    .select("id, name, price_usdt, max_businesses, max_gallery_images, max_bookings_per_day")
+    .select("id, name, max_businesses, max_gallery_images, max_bookings_per_day")
     .eq("id", profile?.plan_id || "free")
     .single();
 
@@ -62,12 +61,47 @@ async function init() {
       upgradeSection.style.display = "none";
     } else {
       planDetails.textContent = `Free plan: ${plan.max_businesses} business, ${plan.max_gallery_images} gallery photos, ${plan.max_bookings_per_day} bookings/day.`;
-      upgradeInstructions.textContent = `Send your USDT payment to upgrade, then submit your transaction reference below. Questions? Message @${UPGRADE_TELEGRAM_USERNAME} on Telegram. An admin will review and approve your request.`;
+      renderPlanPicker();
     }
   }
 
   await loadSubscriptionHistory();
 }
+
+function renderPlanPicker() {
+  planPicker.innerHTML = PRO_PLANS.map(p => `
+    <button type="button" class="plan-option" data-id="${p.id}">
+      <span class="plan-option-label">${p.label}</span>
+      <span class="plan-option-price">$${p.price}</span>
+      ${p.savings ? `<span class="badge badge-success">${p.savings}</span>` : ""}
+    </button>
+  `).join("");
+
+  planPicker.querySelectorAll(".plan-option").forEach(btn => {
+    btn.addEventListener("click", () => selectPlan(btn.dataset.id));
+  });
+}
+
+function selectPlan(planId) {
+  selectedPlan = PRO_PLANS.find(p => p.id === planId);
+
+  planPicker.querySelectorAll(".plan-option").forEach(btn => {
+    btn.classList.toggle("plan-option--selected", btn.dataset.id === planId);
+  });
+
+  payAmount.textContent = `$${selectedPlan.price}`;
+  walletAddress.textContent = USDT_WALLET_ADDRESS;
+
+  const message = `Hi! I'd like to upgrade to Pro (${selectedPlan.label} — $${selectedPlan.price}). My account email is ${currentUser.email}.`;
+  confirmTelegramBtn.href = `https://t.me/${UPGRADE_TELEGRAM_USERNAME}?text=${encodeURIComponent(message)}`;
+
+  paymentStep.style.display = "block";
+}
+
+copyWalletBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(USDT_WALLET_ADDRESS);
+  showToast("Wallet address copied.", "success");
+});
 
 async function loadSubscriptionHistory() {
   const { data, error } = await supabase
@@ -97,39 +131,6 @@ async function loadSubscriptionHistory() {
       .join("")}
   `;
 }
-
-upgradeForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const proofNote = proofNoteInput.value.trim();
-  if (!proofNote) {
-    showToast("Please enter your transaction reference.", "warning");
-    return;
-  }
-
-  submitUpgradeBtn.disabled = true;
-  submitUpgradeLabel.innerHTML = '<span class="spinner"></span> Submitting…';
-
-  const { error } = await supabase.from("subscriptions").insert({
-    user_id: currentUser.id,
-    plan_id: "pro",
-    method: "usdt_manual",
-    status: "pending",
-    proof_note: proofNote,
-  });
-
-  submitUpgradeBtn.disabled = false;
-  submitUpgradeLabel.textContent = "Submit Upgrade Request";
-
-  if (error) {
-    showToast(error.message || "Could not submit upgrade request.", "error");
-    return;
-  }
-
-  showToast("Upgrade request submitted. An admin will review it shortly.", "success");
-  upgradeForm.reset();
-  await loadSubscriptionHistory();
-});
 
 passwordForm.addEventListener("submit", async (e) => {
   e.preventDefault();
