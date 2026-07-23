@@ -69,33 +69,57 @@ async function init() {
 }
 
 function renderPlanPicker() {
-  planPicker.innerHTML = PRO_PLANS.map(p => `
-    <button type="button" class="plan-option" data-id="${p.id}">
-      <span class="plan-option-label">${p.label}</span>
-      <span class="plan-option-price">$${p.price}</span>
-      ${p.savings ? `<span class="badge badge-success">${p.savings}</span>` : ""}
-    </button>
-  `).join("");
+  planPicker.innerHTML = `
+    <div class="pricing-selector">
+      ${PRO_PLANS.map((p, i) => `
+        <button type="button" class="pricing-option ${i === PRO_PLANS.length - 1 ? "pricing-option--default" : ""}" data-id="${p.id}">
+          <span class="pricing-option-radio"></span>
+          <span class="pricing-option-info">
+            <span class="pricing-option-label">${p.label}${p.savings ? ` <span class="badge badge-pro">${p.savings.replace("Save ", "")} off</span>` : ""}</span>
+            <span class="pricing-option-price">$${p.price}</span>
+          </span>
+        </button>
+      `).join("")}
+    </div>
+    <div class="pricing-summary glass-dark" id="pricingSummary"></div>
+  `;
 
-  planPicker.querySelectorAll(".plan-option").forEach(btn => {
+  planPicker.querySelectorAll(".pricing-option").forEach(btn => {
     btn.addEventListener("click", () => selectPlan(btn.dataset.id));
   });
+
+  selectPlan(PRO_PLANS[PRO_PLANS.length - 1].id);
 }
 
 function selectPlan(planId) {
   selectedPlan = PRO_PLANS.find(p => p.id === planId);
 
-  planPicker.querySelectorAll(".plan-option").forEach(btn => {
-    btn.classList.toggle("plan-option--selected", btn.dataset.id === planId);
+  planPicker.querySelectorAll(".pricing-option").forEach(btn => {
+    btn.classList.toggle("pricing-option--selected", btn.dataset.id === planId);
   });
 
-  payAmount.textContent = `$${selectedPlan.price}`;
-  walletAddress.textContent = USDT_WALLET_ADDRESS;
+  const summary = document.getElementById("pricingSummary");
+  summary.innerHTML = `
+    <h4>${selectedPlan.label} Plan</h4>
+    <ul class="pricing-features">
+      <li>Unlimited businesses</li>
+      <li>Unlimited bookings</li>
+      <li>Unlimited gallery photos</li>
+      <li>Unlimited services</li>
+      <li>Priority support</li>
+    </ul>
+    <div class="pricing-summary-price">$${selectedPlan.price}<span>/${selectedPlan.label.toLowerCase()}</span></div>
+    <button type="button" class="btn btn-accent btn-block" id="proceedUpgradeBtn">Upgrade to Pro</button>
+  `;
 
-  const message = `Hi! I'd like to upgrade to Pro (${selectedPlan.label} — $${selectedPlan.price}). My account email is ${currentUser.email}.`;
-  confirmTelegramBtn.href = `https://t.me/${UPGRADE_TELEGRAM_USERNAME}?text=${encodeURIComponent(message)}`;
-
-  paymentStep.style.display = "block";
+  document.getElementById("proceedUpgradeBtn").addEventListener("click", () => {
+    payAmount.textContent = `$${selectedPlan.price}`;
+    walletAddress.textContent = USDT_WALLET_ADDRESS;
+    const message = `Hi! I'd like to upgrade to Pro (${selectedPlan.label} — $${selectedPlan.price}). My account email is ${currentUser.email}.`;
+    confirmTelegramBtn.href = `https://t.me/${UPGRADE_TELEGRAM_USERNAME}?text=${encodeURIComponent(message)}`;
+    paymentStep.style.display = "block";
+    paymentStep.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 }
 
 copyWalletBtn.addEventListener("click", () => {
