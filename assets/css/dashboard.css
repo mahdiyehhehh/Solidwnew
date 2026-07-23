@@ -137,18 +137,76 @@
 .service-row-price { font-weight: var(--fw-semibold); color: var(--color-primary); }
 .service-row-actions { display: flex; gap: var(--space-2); }
 
-/* ---- Opening hours table ---- */
+/* ---- Opening hours — compact rows ---- */
 .hours-row {
-  display: grid;
-  grid-template-columns: 120px 1fr 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: var(--space-3);
-  padding: var(--space-3) 0;
+  padding: var(--space-3) var(--space-2);
   border-bottom: 1px solid var(--color-border);
 }
 .hours-row:last-child { border-bottom: none; }
-.hours-day-label { font-weight: var(--fw-medium); }
-.hours-closed-toggle { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-sm); }
+
+.hours-row-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 150px;
+}
+.hours-day-label {
+  font-weight: var(--fw-medium);
+  width: 84px;
+  flex-shrink: 0;
+  font-size: var(--fs-sm);
+}
+
+.hours-closed-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+.hours-closed-toggle input[type="checkbox"] { display: none; }
+.hours-toggle-track {
+  width: 34px; height: 20px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+.hours-toggle-thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+.hours-closed-toggle input:checked ~ .hours-toggle-track { background-color: var(--color-danger); }
+.hours-closed-toggle input:checked ~ .hours-toggle-track .hours-toggle-thumb { transform: translateX(14px); }
+.hours-toggle-text { min-width: 42px; }
+
+.hours-times {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.hours-times input[type="time"] {
+  width: 88px;
+  padding: 0.3rem 0.5rem;
+  font-size: var(--fs-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+.hours-times input:disabled { opacity: 0.4; }
+.hours-time-sep { color: var(--color-text-muted); font-size: var(--fs-sm); }
 
 /* ---- Reservations list ---- */
 .reservation-card {
@@ -186,6 +244,7 @@
   max-width: 100%;
   overflow-x: auto;
   white-space: nowrap;
+  color: var(--color-navy-text);
 }
 
 /* ---- Upgrade banner ---- */
@@ -265,7 +324,7 @@
 .pricing-summary-price { font-family: var(--font-heading); font-size: var(--fs-2xl); font-weight: var(--fw-bold); color: var(--color-navy-text); margin-bottom: var(--space-4); }
 .pricing-summary-price span { font-size: var(--fs-sm); font-weight: var(--fw-regular); color: var(--color-navy-text-muted); }
 
-/* ---- Autofill fix (removes yellow browser autofill background) ---- */
+/* ---- Autofill fix ---- */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
@@ -274,7 +333,8 @@ input:-webkit-autofill:focus {
   caret-color: var(--color-text);
 }
 
-@media (max-width: 640px) {
-  .hours-row { grid-template-columns: 90px 1fr; row-gap: var(--space-2); }
-  .hours-row .hours-closed-toggle { grid-column: 1 / -1; }
+/* ---- Button appearance reset (defends against native browser artifacts) ---- */
+button {
+  -webkit-appearance: none;
+  appearance: none;
 }
