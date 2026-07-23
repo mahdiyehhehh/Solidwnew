@@ -61,6 +61,17 @@ signOutBtn.addEventListener("click", async () => {
   await signOut();
 });
 
+// ---- Timezone dropdown ----
+function populateTimezoneOptions() {
+  const zones = typeof Intl.supportedValuesOf === "function"
+    ? Intl.supportedValuesOf("timeZone")
+    : ["UTC", "America/New_York", "America/Los_Angeles", "Europe/London", "Europe/Berlin", "Asia/Dubai", "Asia/Tehran", "Asia/Tokyo", "Australia/Sydney"];
+
+  timezoneInput.innerHTML = zones
+    .map((z) => `<option value="${z}">${z.replace(/_/g, " ")}</option>`)
+    .join("");
+}
+
 // ---- File previews ----
 coverInput.addEventListener("change", () => {
   const file = coverInput.files[0];
@@ -129,6 +140,7 @@ function clearModalError() {
 function resetForm() {
   businessForm.reset();
   businessIdInput.value = "";
+  timezoneInput.value = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
   pendingCoverFile = null;
   pendingLogoFile = null;
   coverPreview.style.display = "none";
@@ -335,6 +347,7 @@ businessForm.addEventListener("submit", async (e) => {
 // ---- Init ----
 async function init() {
   currentUser = await requireAuth();
+  populateTimezoneOptions();
 
   const { data: profile } = await supabase
     .from("profiles")
