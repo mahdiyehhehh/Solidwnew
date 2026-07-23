@@ -91,20 +91,25 @@
         <div class="plan-picker" id="planPicker"></div>
 
         <div class="upgrade-step" id="paymentStep" style="display:none; margin-top: var(--space-5);">
-          <h5 style="margin-bottom: var(--space-2);">Payment details</h5>
+          <h5 style="margin-bottom: var(--space-2);">Complete Your Upgrade</h5>
+          <p class="text-muted" style="margin-bottom: var(--space-4);">
+            Choose your plan, send the payment, then contact us on Telegram so we can activate your account.
+          </p>
+
+          <h5 style="margin-bottom: var(--space-2);">Step 1 — Send Payment</h5>
           <p class="text-muted" style="margin-bottom: var(--space-3);">
-            Your total is <strong id="payAmount"></strong>, payable via USDT (TRC20 network). Transfer to the address below, then confirm your order.
+            Send <strong id="payAmount"></strong> USDT (TRC20) to this wallet:
           </p>
           <div class="qr-link-box" style="margin-bottom: var(--space-5); justify-content: space-between;">
             <span id="walletAddress" style="overflow-wrap:anywhere; white-space:normal;"></span>
-            <button type="button" class="btn btn-outline btn-sm" id="copyWalletBtn">Copy</button>
+            <button type="button" class="btn btn-outline btn-sm" id="copyWalletBtn">Copy Address</button>
           </div>
 
-          <h5 style="margin-bottom: var(--space-2);">Confirm your order</h5>
+          <h5 style="margin-bottom: var(--space-2);">Step 2 — Contact Us</h5>
           <p class="text-muted" style="margin-bottom: var(--space-4);">
-            After sending payment, tap below to confirm — we'll activate your plan shortly after.
+            After sending the payment, message our official Telegram account with your transaction so we can safely verify it and activate your Pro plan.
           </p>
-          <a href="#" target="_blank" rel="noopener" class="btn btn-accent" id="confirmTelegramBtn">Confirm Order</a>
+          <a href="#" target="_blank" rel="noopener" class="btn btn-accent" id="confirmTelegramBtn">Message on Telegram</a>
         </div>
       </div>
 
