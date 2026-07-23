@@ -72,6 +72,21 @@
 .btn-danger:hover { filter: brightness(0.92); }
 
 .btn-sm { padding: var(--space-2) var(--space-4); font-size: var(--fs-xs); }
+
+/* Modal close (✕) buttons — square, thumb-sized tap target regardless of btn-sm padding */
+.modal-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  min-width: 40px;
+  border-radius: var(--radius-full, 999px);
+  font-size: var(--fs-md);
+  line-height: 1;
+  flex-shrink: 0;
+}
 .btn-lg { padding: var(--space-4) var(--space-7); font-size: var(--fs-md); }
 .btn-block { width: 100%; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
