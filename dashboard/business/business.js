@@ -7,7 +7,8 @@ import { supabase } from "/assets/js/supabaseClient.js";
 import { showToast } from "/assets/js/toast.js";
 import { BUCKETS } from "/assets/js/config.js";
 
-document.title = "JS LOADED - " + document.title;
+document.body.insertAdjacentHTML("afterbegin", '<div style="background:red;color:white;padding:20px;font-size:20px;">JS LOADED</div>');
+
 
 const businessList = document.getElementById("businessList");
 const emptyState = document.getElementById("emptyState");
