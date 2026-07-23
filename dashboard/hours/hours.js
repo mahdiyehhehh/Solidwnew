@@ -101,23 +101,31 @@ function renderTable() {
     row.className = "hours-row";
     row.dataset.day = d;
     row.innerHTML = `
-      <span class="hours-day-label">${DAY_LABELS[d]}</span>
-      <input type="time" class="hours-open" value="${day.open_time}" ${day.closed ? "disabled" : ""} />
-      <input type="time" class="hours-close" value="${day.close_time}" ${day.closed ? "disabled" : ""} />
-      <label class="hours-closed-toggle">
-        <input type="checkbox" class="hours-closed" ${day.closed ? "checked" : ""} />
-        Closed
-      </label>
+      <div class="hours-row-top">
+        <span class="hours-day-label">${DAY_LABELS[d]}</span>
+        <label class="hours-closed-toggle">
+          <input type="checkbox" class="hours-closed" ${day.closed ? "checked" : ""} />
+          <span class="hours-toggle-track"><span class="hours-toggle-thumb"></span></span>
+          <span class="hours-toggle-text">${day.closed ? "Closed" : "Open"}</span>
+        </label>
+      </div>
+      <div class="hours-times">
+        <input type="time" class="hours-open" value="${day.open_time}" ${day.closed ? "disabled" : ""} />
+        <span class="hours-time-sep">–</span>
+        <input type="time" class="hours-close" value="${day.close_time}" ${day.closed ? "disabled" : ""} />
+      </div>
     `;
     hoursTable.appendChild(row);
 
     const closedCheckbox = row.querySelector(".hours-closed");
+    const toggleText = row.querySelector(".hours-toggle-text");
     const openInput = row.querySelector(".hours-open");
     const closeInput = row.querySelector(".hours-close");
 
     closedCheckbox.addEventListener("change", () => {
       openInput.disabled = closedCheckbox.checked;
       closeInput.disabled = closedCheckbox.checked;
+      toggleText.textContent = closedCheckbox.checked ? "Closed" : "Open";
     });
   }
 }
