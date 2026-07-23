@@ -61,18 +61,26 @@
 
       <div id="upgradeSection" style="margin-top: var(--space-5);">
         <h4 style="margin-bottom: var(--space-2);">Upgrade to Pro</h4>
-        <p class="text-muted" id="upgradeInstructions">
-          Send your USDT payment, then submit the transaction reference below. An admin will review and approve it.
-        </p>
-        <form id="upgradeForm" class="auth-form" style="margin-top: var(--space-4);" novalidate>
-          <div class="form-group">
-            <label class="form-label" for="proofNote">Transaction Reference / Note</label>
-            <input type="text" id="proofNote" placeholder="e.g. TX hash or wallet reference" required />
+        <p class="text-muted" style="margin-bottom: var(--space-4);">Choose a plan to get started.</p>
+
+        <div class="plan-picker" id="planPicker"></div>
+
+        <div class="upgrade-step" id="paymentStep" style="display:none; margin-top: var(--space-5);">
+          <h5 style="margin-bottom: var(--space-2);">1. Send payment</h5>
+          <p class="text-muted" style="margin-bottom: var(--space-3);">
+            Send <strong id="payAmount"></strong> in USDT (TRC20 network) to:
+          </p>
+          <div class="qr-link-box" style="margin-bottom: var(--space-5); justify-content: space-between;">
+            <span id="walletAddress" style="overflow-wrap:anywhere; white-space:normal;"></span>
+            <button type="button" class="btn btn-outline btn-sm" id="copyWalletBtn">Copy</button>
           </div>
-          <button type="submit" class="btn btn-accent" id="submitUpgradeBtn">
-            <span id="submitUpgradeLabel">Submit Upgrade Request</span>
-          </button>
-        </form>
+
+          <h5 style="margin-bottom: var(--space-2);">2. Confirm with us</h5>
+          <p class="text-muted" style="margin-bottom: var(--space-4);">
+            After sending payment, tap below to confirm on Telegram — we'll activate your plan shortly after.
+          </p>
+          <a href="#" target="_blank" rel="noopener" class="btn btn-accent" id="confirmTelegramBtn">Confirm on Telegram</a>
+        </div>
       </div>
 
       <div id="subscriptionHistory" style="margin-top: var(--space-5);"></div>
