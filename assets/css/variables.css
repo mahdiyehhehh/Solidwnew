@@ -40,6 +40,10 @@
   --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   --gradient-gold: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
   --gradient-navy: linear-gradient(180deg, #112250 0%, #0c1a3d 100%);
+  --gradient-mesh:
+    radial-gradient(60% 55% at 15% 10%, rgba(224, 197, 143, 0.20) 0%, rgba(224, 197, 143, 0) 60%),
+    radial-gradient(55% 60% at 85% 0%, rgba(77, 112, 150, 0.35) 0%, rgba(77, 112, 150, 0) 65%),
+    radial-gradient(70% 70% at 50% 100%, rgba(17, 34, 80, 0.6) 0%, rgba(17, 34, 80, 0) 70%);
 
   --hairline-gold: linear-gradient(90deg, transparent 0%, var(--color-accent) 50%, transparent 100%);
 
