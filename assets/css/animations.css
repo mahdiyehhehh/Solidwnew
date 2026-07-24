@@ -114,11 +114,13 @@
 }
 
 .spinner{
+  display:inline-block;
   width:1em;
   height:1em;
+  vertical-align:-0.15em;
 
-  border:2px solid rgba(255,255,255,.4);
-  border-top-color:currentColor;
+  border:2px solid rgba(255,255,255,.3);
+  border-top-color:var(--color-accent);
 
   border-radius:50%;
 
